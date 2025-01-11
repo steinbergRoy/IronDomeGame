@@ -4,16 +4,9 @@
 
 namespace iron_dome_game
 {
-Pitcher::Pitcher()
-{
+Pitcher::Pitcher() : StaticEntity(State(PitcherGlobals::POS_X, PitcherGlobals::POS_Y, PitcherGlobals::WIDTH, PitcherGlobals::HEIGHT)) {}
 
-  trajectory.initialState.pos.x = PitcherGlobals::POS_X;
-  trajectory.initialState.pos.y = PitcherGlobals::POS_Y;
 
-  width    = PitcherGlobals::WIDTH;
-  height   = PitcherGlobals::HEIGHT;
-
-}
 
 //============================================================================//
 

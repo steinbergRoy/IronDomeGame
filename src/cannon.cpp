@@ -4,14 +4,7 @@
 
 namespace iron_dome_game
 {
-Cannon::Cannon()
-{
-    trajectory.initialState.pos.x = CannonGlobals::POS_X;
-    trajectory.initialState.pos.y = CannonGlobals::POS_Y;
-
-    width    = CannonGlobals::WIDTH;
-    height   = CannonGlobals::HEIGHT;
-}
+Cannon::Cannon() : StaticEntity(State(CannonGlobals::POS_X, CannonGlobals::POS_Y, CannonGlobals::WIDTH, CannonGlobals::HEIGHT)) {}
 
 //============================================================================//
 

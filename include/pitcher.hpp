@@ -4,7 +4,7 @@
 
 namespace iron_dome_game
 {
-class Pitcher : public Entity
+class Pitcher : public StaticEntity
 {
 public:
     Pitcher();

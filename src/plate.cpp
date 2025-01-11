@@ -3,16 +3,9 @@
 
 namespace iron_dome_game
 {
-Plate::Plate(Velocity velocity)
-{
-    trajectory.initialState.pos.x = PlateGlobals::POS_X;
-    trajectory.initialState.pos.y = PlateGlobals::POS_Y;
-    trajectory.initialState.velocity.x = velocity.x;
-    trajectory.initialState.velocity.y = velocity.y;
 
-    width   = PlateGlobals::WIDTH;
-    height  = PlateGlobals::HEIGHT;
-}
+Plate::Plate(Velocity velocity): DynamicEntity(DynamicState(PlateGlobals::POS_X, PlateGlobals::POS_Y, PlateGlobals::WIDTH, PlateGlobals::HEIGHT, velocity)) {}
+
 
 //============================================================================//
 

@@ -4,7 +4,7 @@
 
 namespace iron_dome_game
 {
-class Rocket : public Entity
+class Rocket : public DynamicEntity
 {
 public:
     Rocket(Velocity velocity);

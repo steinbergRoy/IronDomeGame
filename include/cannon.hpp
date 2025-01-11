@@ -4,7 +4,7 @@
 
 namespace iron_dome_game
 {
-class Cannon : public Entity
+class Cannon : public StaticEntity
 {
 public:
     Cannon();

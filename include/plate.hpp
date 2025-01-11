@@ -4,7 +4,7 @@
 
 namespace iron_dome_game
 {
-class Plate : public Entity
+class Plate : public DynamicEntity
 {
 public:
     Plate(Velocity velocity);

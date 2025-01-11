@@ -3,16 +3,8 @@
 
 namespace iron_dome_game
 {
-Rocket::Rocket(Velocity velocity)
-{
-    trajectory.initialState.pos.x = RocketGlobals::POS_X;
-    trajectory.initialState.pos.y = RocketGlobals::POS_Y;
-    trajectory.initialState.velocity.x = velocity.x;
-    trajectory.initialState.velocity.y = velocity.y;
+Rocket::Rocket(Velocity velocity): DynamicEntity(DynamicState(RocketGlobals::POS_X, RocketGlobals::POS_Y, RocketGlobals::WIDTH, RocketGlobals::HEIGHT, velocity)) {}
 
-    width   = RocketGlobals::WIDTH;
-    height  = RocketGlobals::HEIGHT;
-}
 
 //============================================================================//
 
