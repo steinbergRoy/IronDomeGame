@@ -4,10 +4,10 @@
 #include <math.h>
 
 #include "game.hpp"
+#include "globals.hpp"
 #include "cannon.hpp"
 #include "rocket.hpp"
 
-#define DEG_TO_RAD(x)   (x * 0.0174533)
 
 namespace iron_dome_game
 {
@@ -86,23 +86,19 @@ void Game::play()
 
 void Game::spawnPlate() 
 {
-    constexpr int ANGLE = 120;
-
     int firePower = std::rand() % 15 + 30;
     Velocity velocity;
-    velocity.x = std::cos(DEG_TO_RAD(ANGLE)) * firePower;
-    velocity.y = std::sin(DEG_TO_RAD(ANGLE)) * firePower;
+    velocity.x = PlateGlobals::LAUNCH_ANGLE_COS * firePower;
+    velocity.y = PlateGlobals::LAUNCH_ANGLE_SIN * firePower;
     grid.addEntity(std::make_shared<Plate>(velocity));
 }
 
 void Game::launchRocket()
 {
-    constexpr int ANGLE = 90;
-
     int firePower = 35; //std::rand() % 15 + 30;
     Velocity velocity;
-    velocity.x = std::cos(DEG_TO_RAD(ANGLE)) * firePower;
-    velocity.y = std::sin(DEG_TO_RAD(ANGLE)) * firePower;
+    velocity.x = RocketGlobals::LAUNCH_ANGLE_COS * firePower;
+    velocity.y = RocketGlobals::LAUNCH_ANGLE_SIN * firePower;
     grid.addEntity(std::make_shared<Rocket>(velocity));
 }
 

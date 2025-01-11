@@ -1,16 +1,17 @@
 #include "rocket.hpp"
+#include "globals.hpp"
 
 namespace iron_dome_game
 {
 Rocket::Rocket(Velocity velocity)
 {
-    trajectory.initialState.pos.x = GRID_COLUMNS - 52; // center of the cannon
-    trajectory.initialState.pos.y = 5; // the height of the pitcher
+    trajectory.initialState.pos.x = RocketGlobals::POS_X;
+    trajectory.initialState.pos.y = RocketGlobals::POS_Y;
     trajectory.initialState.velocity.x = velocity.x;
     trajectory.initialState.velocity.y = velocity.y;
 
-    width   = 5;
-    height  = 6;
+    width   = RocketGlobals::WIDTH;
+    height  = RocketGlobals::HEIGHT;
 }
 
 //============================================================================//

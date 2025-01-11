@@ -1,15 +1,18 @@
 #include "config.hpp"
 #include "pitcher.hpp"
+#include "globals.hpp"
 
 namespace iron_dome_game
 {
 Pitcher::Pitcher()
 {
-    trajectory.initialState.pos.x = GRID_COLUMNS - 7;
-    trajectory.initialState.pos.y = 0;
 
-    width    = 6;
-    height   = 5;
+  trajectory.initialState.pos.x = PitcherGlobals::POS_X;
+  trajectory.initialState.pos.y = PitcherGlobals::POS_Y;
+
+  width    = PitcherGlobals::WIDTH;
+  height   = PitcherGlobals::HEIGHT;
+
 }
 
 //============================================================================//

@@ -1,15 +1,16 @@
 #include "config.hpp"
 #include "cannon.hpp"
+#include "globals.hpp"
 
 namespace iron_dome_game
 {
 Cannon::Cannon()
 {
-    trajectory.initialState.pos.x = GRID_COLUMNS - 50;
-    trajectory.initialState.pos.y = 0;
+    trajectory.initialState.pos.x = CannonGlobals::POS_X;
+    trajectory.initialState.pos.y = CannonGlobals::POS_Y;
 
-    width    = 5;
-    height   = 5;
+    width    = CannonGlobals::WIDTH;
+    height   = CannonGlobals::HEIGHT;
 }
 
 //============================================================================//

@@ -1,16 +1,17 @@
 #include "plate.hpp"
+#include "globals.hpp"
 
 namespace iron_dome_game
 {
 Plate::Plate(Velocity velocity)
 {
-    trajectory.initialState.pos.x = GRID_COLUMNS - 10; // center of the pitcher
-    trajectory.initialState.pos.y = 5; // the height of the pitcher
+    trajectory.initialState.pos.x = PlateGlobals::POS_X;
+    trajectory.initialState.pos.y = PlateGlobals::POS_Y;
     trajectory.initialState.velocity.x = velocity.x;
     trajectory.initialState.velocity.y = velocity.y;
 
-    width   = 3;
-    height  = 3;
+    width   = PlateGlobals::WIDTH;
+    height  = PlateGlobals::HEIGHT;
 }
 
 //============================================================================//
