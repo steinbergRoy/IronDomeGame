@@ -19,6 +19,7 @@ struct Game
     Grid grid;
 
     void spawnPlate();
+    void launchRocket();
 
     bool isShotFired = false;
     bool gameIsActive = false;

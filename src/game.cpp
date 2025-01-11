@@ -4,6 +4,8 @@
 #include <math.h>
 
 #include "game.hpp"
+#include "cannon.hpp"
+#include "rocket.hpp"
 
 #define DEG_TO_RAD(x)   (x * 0.0174533)
 
@@ -12,7 +14,8 @@ namespace iron_dome_game
 
 Game::Game() 
 {
-    grid.addEntity(std::make_shared<iron_dome_game::Pitcher>());
+  grid.addEntity(std::make_shared<iron_dome_game::Pitcher>());
+  grid.addEntity(std::make_shared<iron_dome_game::Cannon>());
 }
 
 //============================================================================//
@@ -46,6 +49,7 @@ void Game::play()
         {
             isShotFired = false;
             ++shotsFired;
+            launchRocket();
         }
 
         if (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - lastTimeRefreshed).count() > 100)
@@ -89,6 +93,17 @@ void Game::spawnPlate()
     velocity.x = std::cos(DEG_TO_RAD(ANGLE)) * firePower;
     velocity.y = std::sin(DEG_TO_RAD(ANGLE)) * firePower;
     grid.addEntity(std::make_shared<Plate>(velocity));
+}
+
+void Game::launchRocket()
+{
+    constexpr int ANGLE = 90;
+
+    int firePower = 35; //std::rand() % 15 + 30;
+    Velocity velocity;
+    velocity.x = std::cos(DEG_TO_RAD(ANGLE)) * firePower;
+    velocity.y = std::sin(DEG_TO_RAD(ANGLE)) * firePower;
+    grid.addEntity(std::make_shared<Rocket>(velocity));
 }
 
 }
