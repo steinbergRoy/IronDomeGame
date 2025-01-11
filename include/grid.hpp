@@ -7,6 +7,7 @@
 #include "config.hpp"
 #include "trajectory.hpp"
 
+
 namespace iron_dome_game
 {
 
@@ -33,7 +34,7 @@ public:
 
     bool drawPixel(uint16_t row, uint16_t col, char pixel);
 
-    void addEntity(std::shared_ptr<Entity> entity) { m_entities.push_back(entity); }
+    void addEntity(std::shared_ptr<Entity> entity);
 
     uint16_t checkHits();
 
