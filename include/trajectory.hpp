@@ -4,6 +4,8 @@
 #include <math.h>
 #include "config.hpp"
 
+// I left the file name still to be called trajectory for the reviewing convenience
+
 namespace iron_dome_game
 {
 struct Pos
@@ -25,37 +27,41 @@ struct Velocity
     int16_t y = 0;
 };
 
-struct State {
-  State(uint16_t x, uint16_t y, uint16_t w, uint16_t h) : initialPos(x, y), width(w), height(h) {}
-  State(const Pos & pos, uint16_t w, uint16_t h) : initialPos(pos.x, pos.y), width(w), height(h) {}
-  State(const State & other) : initialPos(other.initialPos), width(other.width), height(other.height) {}
-    Pos initialPos;
-    uint16_t width = 0;
-    uint16_t height = 0;
+class State {
+public:
+  State(uint16_t x, uint16_t y, uint16_t w, uint16_t h) : initial_pos(x, y), _width(w), _height(h) {}
+  State(const State & other) : initial_pos(other.initial_pos), _width(other._width), _height(other._height) {}
+  virtual ~State() = default;
+
+  virtual const Pos & getPos() const { return initial_pos; }
+  const uint16_t & width()     const { return _width; }
+  const uint16_t & height()    const { return _height; }
+
+protected:
+    Pos initial_pos;
+    uint16_t _width = 0;
+    uint16_t _height = 0;
 };
 
-struct DynamicState : State
+class DynamicState : public State
 {
+public:
   DynamicState(const DynamicState & other) : State(other), velocity(other.velocity)  {}
   DynamicState(uint16_t x, uint16_t y, uint16_t w, uint16_t h, Velocity v) : State(x, y,w, h), velocity(v.x, v.y) {}
-  DynamicState(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t vx, uint16_t vy) : State(x, y,w, h), velocity(vx, vy) {}
+  virtual ~DynamicState() = default;
+
+  const Pos & getPos() const override { return current_position; }
+  void updatePosition(std::chrono::steady_clock::time_point = std::chrono::steady_clock::now());
+
+private:
 
     Velocity velocity;
-    Pos currentPosition;
+    Pos current_position;
 
     std::chrono::steady_clock::time_point t0 = std::chrono::steady_clock::now();
     std::chrono::duration<float> duration() const { return  std::chrono::steady_clock::now() - t0; }
 
-    void updatePosition(std::chrono::steady_clock::time_point = std::chrono::steady_clock::now())
-    {
-        currentPosition.x = round(initialPos.x + velocity.x * duration().count());
-        currentPosition.y = round(initialPos.y + velocity.y * duration().count() + 0.5 * GRAVITY * pow(duration().count(), 2));
-    }
 };
 
-//struct Trajectory
-//{
-//    InitialState initialState;
-//
-//};
+
 }

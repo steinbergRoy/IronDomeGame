@@ -15,7 +15,6 @@ public:
 
 protected:
     EntityType type() const override { return EntityType::CANNON; }
-    bool isStatic() const { return true; }
 
 private:
 

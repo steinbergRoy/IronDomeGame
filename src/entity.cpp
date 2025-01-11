@@ -10,8 +10,8 @@ BoundingBox Entity::boundingBox() const
 {
     BoundingBox bbox;
     bbox.bottom_left = pos();
-    bbox.top_right.x = pos().x + getState().width - 1;
-    bbox.top_right.y = pos().y + getState().height - 1;
+    bbox.top_right.x = pos().x + getState().width() - 1;
+    bbox.top_right.y = pos().y + getState().height() - 1;
 
     return bbox;
 }
@@ -33,6 +33,11 @@ bool Entity::isIntersectWith(std::shared_ptr<Entity> & other) {
     return intersection_result;
 }
 
+const Pos & StaticEntity::pos() const {
+  return state.getPos();
+}
+
+
 //============================================================================//
 
 void DynamicEntity::updatePosition() {
@@ -43,7 +48,7 @@ void DynamicEntity::updatePosition() {
 
 
 const Pos & DynamicEntity::pos() const {
-  return state.currentPosition;
+  return state.getPos();
 }
 
 //============================================================================//
