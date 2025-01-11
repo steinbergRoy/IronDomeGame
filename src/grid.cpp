@@ -37,7 +37,7 @@ void Grid::refresh()
         },
         1
     );
-    m_entities.remove_if([](std::shared_ptr<Entity> entity) { return entity->isIntersect;});
+    m_entities.remove_if([](std::shared_ptr<Entity> entity) { return entity->getIntersection();});
 
 
     for (auto entity : m_entities)
@@ -79,11 +79,10 @@ uint16_t Grid::checkHits()
     for (auto & first : m_entities) {
       for (auto & second : m_entities) {
         if (first == second) { continue; } // avoid check entity with itself (comparable since it's pointer)
-        if (first->isIntersect or second->isIntersect) { continue; } // avoid check entity that already intersected
+        if (first->getIntersection() or second->getIntersection()) { continue; } // avoid check entity that already intersected
         if (not first->canIntersectWith(second)) { continue; } // avoid check entity that can't be intersect with each other
         if (not first->validForIntersection() or not second->validForIntersection()) { continue; } // avoid removing pitcher/cannon
         if (intersects(first, second)) {
-          first->isIntersect = second->isIntersect = true;
           hits++;
         }
       }
@@ -96,14 +95,7 @@ uint16_t Grid::checkHits()
 
 bool Grid::intersects(std::shared_ptr<Entity> first, std::shared_ptr<Entity> second) 
 {
-  bool diverge_at_x  = first ->boundingBox().top_right.x < second->boundingBox().bottom_left.x;
-       diverge_at_x |= second->boundingBox().top_right.x < first ->boundingBox().bottom_left.x;
-
-   bool diverge_at_y  = first ->boundingBox().top_right.y < second->boundingBox().bottom_left.y;
-        diverge_at_y |= second->boundingBox().top_right.y < first ->boundingBox().bottom_left.y;
-
-    if (diverge_at_x or diverge_at_y) { return false; }
-    return true;
+  return first->isIntersectWith(second);
 }
 
 }

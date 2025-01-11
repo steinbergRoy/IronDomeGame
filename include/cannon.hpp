@@ -4,18 +4,23 @@
 
 namespace iron_dome_game
 {
-struct Cannon : public Entity
+class Cannon : public Entity
 {
+public:
     Cannon();
     ~Cannon() = default;
-
-    EntityType type() override { return EntityType::CANNON; }
-
     void drawOnGrid(Grid &grid) override;
     bool validForIntersection() override { return false; }
     bool canIntersectWith(std::shared_ptr<Entity> & other) override { return false; }
 
+protected:
+    EntityType type() override { return EntityType::CANNON; }
     bool isStatic() { return true; }
+
+private:
+
+
+
 };
 
 }
