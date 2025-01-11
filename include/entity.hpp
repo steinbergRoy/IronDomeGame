@@ -18,23 +18,23 @@ enum EntityType
 class Entity
 {
 public:
-    virtual EntityType type() { return EntityType::NONE; }
+    virtual EntityType type() const { return EntityType::NONE; }
     bool getIntersection() const { return is_intersect; }
-    virtual bool validForIntersection() = 0;
-    virtual bool canIntersectWith(std::shared_ptr<Entity> & other) = 0;
+    virtual bool validForIntersection() const = 0;
+    virtual bool canIntersectWith(std::shared_ptr<Entity> & other) const = 0;
     bool isIntersectWith(std::shared_ptr<Entity> & other);
-    virtual void drawOnGrid(Grid &grid) = 0;
+    virtual void drawOnGrid(Grid &grid) const = 0;
 
 protected:
     Trajectory trajectory;
-    Pos pos();
+    Pos pos() const;
     uint16_t width = 0;
     uint16_t height = 0;
 
 private:
     bool is_intersect = false;
-    BoundingBox boundingBox();
-    virtual bool isStatic() = 0;
+    BoundingBox boundingBox() const;
+    virtual bool isStatic() const = 0;
 
 };
 }

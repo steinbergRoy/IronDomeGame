@@ -29,9 +29,9 @@ struct Trajectory
 {
     InitialState initialState;
 
-    std::chrono::duration<float> duration() { return  std::chrono::steady_clock::now() - initialState.t0; }
+    std::chrono::duration<float> duration() const { return  std::chrono::steady_clock::now() - initialState.t0; }
 
-    Pos calculatePosition(std::chrono::steady_clock::time_point = std::chrono::steady_clock::now())
+    Pos calculatePosition(std::chrono::steady_clock::time_point = std::chrono::steady_clock::now()) const
     {
         Pos pos;
         pos.x = round(initialState.pos.x + initialState.velocity.x * duration().count());

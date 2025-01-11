@@ -16,7 +16,7 @@ Rocket::Rocket(Velocity velocity)
 
 //============================================================================//
 
-void Rocket::drawOnGrid(Grid &grid)
+void Rocket::drawOnGrid(Grid &grid) const
 {
     auto col = pos().x;
     auto row = pos().y;

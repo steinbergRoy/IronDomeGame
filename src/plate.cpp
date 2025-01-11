@@ -16,7 +16,7 @@ Plate::Plate(Velocity velocity)
 
 //============================================================================//
 
-void Plate::drawOnGrid(Grid &grid)
+void Plate::drawOnGrid(Grid &grid) const
 {
     auto col = pos().x;
     auto row = pos().y;

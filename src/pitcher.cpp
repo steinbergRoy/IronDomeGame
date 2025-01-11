@@ -17,7 +17,7 @@ Pitcher::Pitcher()
 
 //============================================================================//
 
-void Pitcher::drawOnGrid(Grid &grid)
+void Pitcher::drawOnGrid(Grid &grid) const
 {
     auto col = pos().x;
     auto row = pos().y;

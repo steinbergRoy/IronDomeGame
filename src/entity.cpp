@@ -3,7 +3,7 @@
 namespace iron_dome_game
 {
 
-Pos Entity::pos() 
+Pos Entity::pos() const
 {
     if (isStatic())
     {
@@ -17,7 +17,7 @@ Pos Entity::pos()
 
 //============================================================================//
 
-BoundingBox Entity::boundingBox() 
+BoundingBox Entity::boundingBox() const
 {
     BoundingBox bbox;
     bbox.bottom_left = pos();

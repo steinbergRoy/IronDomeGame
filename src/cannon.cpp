@@ -15,7 +15,7 @@ Cannon::Cannon()
 
 //============================================================================//
 
-void Cannon::drawOnGrid(Grid &grid)
+void Cannon::drawOnGrid(Grid &grid) const
 {
     auto col = pos().x;
     auto row = pos().y;
