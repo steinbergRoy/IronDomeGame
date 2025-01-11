@@ -13,6 +13,7 @@ struct Plate : public Entity
 
     EntityType type() override { return EntityType::PLATE; }
     bool validForIntersection() override { return true; }
+    bool canIntersectWith(std::shared_ptr<Entity> & other) override { return other->type() == EntityType::ROCKET; }
 
     bool isStatic() { return false; }
 };

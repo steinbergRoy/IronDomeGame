@@ -80,6 +80,7 @@ uint16_t Grid::checkHits()
       for (auto & second : m_entities) {
         if (first == second) { continue; } // avoid check entity with itself (comparable since it's pointer)
         if (first->isIntersect or second->isIntersect) { continue; } // avoid check entity that already intersected
+        if (not first->canIntersectWith(second)) { continue; } // avoid check entity that can't be intersect with each other
         if (not first->validForIntersection() or not second->validForIntersection()) { continue; } // avoid removing pitcher/cannon
         if (intersects(first, second)) {
           first->isIntersect = second->isIntersect = true;

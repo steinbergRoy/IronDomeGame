@@ -13,6 +13,7 @@ struct Rocket : public Entity
 
     EntityType type() override { return EntityType::ROCKET; }
     bool validForIntersection() override { return true; }
+    bool canIntersectWith(std::shared_ptr<Entity> & other) override { return other->type() == EntityType::PLATE; }
 
     bool isStatic() { return false; }
 };

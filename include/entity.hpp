@@ -28,6 +28,7 @@ struct Entity
 
     bool isIntersect = false;
     virtual bool validForIntersection() = 0;
+    virtual bool canIntersectWith(std::shared_ptr<Entity> & other) = 0;
 
     BoundingBox boundingBox();
 
