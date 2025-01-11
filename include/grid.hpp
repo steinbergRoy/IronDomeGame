@@ -7,7 +7,6 @@
 #include "config.hpp"
 #include "trajectory.hpp"
 
-
 namespace iron_dome_game
 {
 

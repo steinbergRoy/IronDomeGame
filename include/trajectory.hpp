@@ -21,7 +21,6 @@ struct Velocity
 {
   Velocity() = default;
   Velocity(uint16_t _x, uint16_t _y) : x(_x), y(_y) {}
-  Velocity(const Pos & other) : x(other.x), y(other.y) {}
 
     int16_t x = 0;
     int16_t y = 0;

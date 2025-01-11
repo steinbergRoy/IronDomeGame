@@ -5,8 +5,6 @@
 
 #include "game.hpp"
 #include "globals.hpp"
-#include "cannon.hpp"
-#include "rocket.hpp"
 
 
 namespace iron_dome_game
@@ -83,7 +81,6 @@ void Game::play()
 }
 
 //============================================================================//
-
 
 void Game::spawnPlate() 
 {

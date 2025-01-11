@@ -15,11 +15,6 @@ public:
 
 protected:
     EntityType type() const override { return EntityType::CANNON; }
-
-private:
-
-
-
 };
 
 }

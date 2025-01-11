@@ -15,10 +15,6 @@ public:
 
 protected:
     EntityType type() const override { return EntityType::PITCHER; }
-    bool isStatic() const { return true; }
-
-private:
-
 };
 
 }

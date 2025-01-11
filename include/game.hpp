@@ -6,6 +6,8 @@
 #include "grid.hpp"
 #include "pitcher.hpp"
 #include "plate.hpp"
+#include "cannon.hpp"
+#include "rocket.hpp"
 
 namespace iron_dome_game
 {

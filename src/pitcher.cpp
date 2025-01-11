@@ -1,4 +1,3 @@
-#include "config.hpp"
 #include "pitcher.hpp"
 #include "globals.hpp"
 

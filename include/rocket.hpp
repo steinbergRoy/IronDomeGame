@@ -15,7 +15,6 @@ public:
 
 protected:
     EntityType type() const override { return EntityType::ROCKET; }
-    bool isStatic() const { return false; }
 
 private:
 

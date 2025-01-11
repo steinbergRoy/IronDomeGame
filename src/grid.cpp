@@ -28,7 +28,6 @@ void Grid::draw()
 
 void Grid::refresh() 
 {
-
     // Draw background
     forEveryPixel(
         [this](int row, int col)
@@ -46,7 +45,6 @@ void Grid::refresh()
         1
     );
     m_entities.remove_if([](std::shared_ptr<Entity> entity) { return entity->getIntersection();});
-
 
     for (auto entity : m_entities)
     {

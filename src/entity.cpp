@@ -33,6 +33,8 @@ bool Entity::isIntersectWith(std::shared_ptr<Entity> & other) {
     return intersection_result;
 }
 
+//============================================================================//
+
 const Pos & StaticEntity::pos() const {
   return state.getPos();
 }
