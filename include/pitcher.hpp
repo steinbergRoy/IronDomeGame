@@ -12,6 +12,7 @@ struct Pitcher : public Entity
     EntityType type() override { return EntityType::PITCHER; }
 
     void drawOnGrid(Grid &grid) override;
+    bool validForIntersection() override { return false; }
 
     bool isStatic() { return true; }
 };

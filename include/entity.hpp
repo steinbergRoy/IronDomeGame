@@ -26,6 +26,9 @@ struct Entity
     uint16_t width = 0;
     uint16_t height = 0;
 
+    bool isIntersect = false;
+    virtual bool validForIntersection() = 0;
+
     BoundingBox boundingBox();
 
     virtual bool isStatic() = 0;

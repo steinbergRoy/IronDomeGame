@@ -12,6 +12,7 @@ struct Plate : public Entity
     void drawOnGrid(Grid &grid) override;
 
     EntityType type() override { return EntityType::PLATE; }
+    bool validForIntersection() override { return true; }
 
     bool isStatic() { return false; }
 };
