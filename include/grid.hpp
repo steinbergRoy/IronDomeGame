@@ -15,8 +15,8 @@ struct Entity;
 // Two points, representing a rectangle around an entity
 struct BoundingBox
 {
-    Pos p1;
-    Pos p2;
+    Pos bottom_left;
+    Pos top_right;
 };
 
 class Grid

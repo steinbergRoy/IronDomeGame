@@ -20,9 +20,9 @@ Pos Entity::pos()
 BoundingBox Entity::boundingBox() 
 {
     BoundingBox bbox;
-    bbox.p1 = pos();
-    bbox.p2.x = pos().x + width - 1;
-    bbox.p2.y = pos().y + height - 1;
+    bbox.bottom_left = pos();
+    bbox.top_right.x = pos().x + width - 1;
+    bbox.top_right.y = pos().y + height - 1;
 
     return bbox;
 }
