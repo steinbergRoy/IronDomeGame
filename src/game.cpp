@@ -84,21 +84,18 @@ void Game::play()
 
 //============================================================================//
 
+
 void Game::spawnPlate() 
 {
-    int firePower = std::rand() % 15 + 30;
-    Velocity velocity;
-    velocity.x = PlateGlobals::LAUNCH_ANGLE_COS * firePower;
-    velocity.y = PlateGlobals::LAUNCH_ANGLE_SIN * firePower;
-    grid.addEntity(std::make_shared<Plate>(velocity));
+  Velocity velocity = DynamicEntity::generateVelocity(EntityType::PLATE);
+  grid.addEntity(std::make_shared<Plate>(velocity));
 }
+
+//============================================================================//
 
 void Game::launchRocket()
 {
-    int firePower = 35; //std::rand() % 15 + 30;
-    Velocity velocity;
-    velocity.x = RocketGlobals::LAUNCH_ANGLE_COS * firePower;
-    velocity.y = RocketGlobals::LAUNCH_ANGLE_SIN * firePower;
+    Velocity velocity = DynamicEntity::generateVelocity(EntityType::ROCKET);
     grid.addEntity(std::make_shared<Rocket>(velocity));
 }
 

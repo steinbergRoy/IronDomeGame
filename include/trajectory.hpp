@@ -41,16 +41,15 @@ struct DynamicState : State
   DynamicState(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t vx, uint16_t vy) : State(x, y,w, h), velocity(vx, vy) {}
 
     Velocity velocity;
+    Pos currentPosition;
+
     std::chrono::steady_clock::time_point t0 = std::chrono::steady_clock::now();
     std::chrono::duration<float> duration() const { return  std::chrono::steady_clock::now() - t0; }
 
-    Pos calculatePosition(std::chrono::steady_clock::time_point = std::chrono::steady_clock::now()) const
+    void updatePosition(std::chrono::steady_clock::time_point = std::chrono::steady_clock::now())
     {
-        Pos pos;
-        pos.x = round(initialPos.x + velocity.x * duration().count());
-        pos.y = round(initialPos.y + velocity.y * duration().count() + 0.5 * GRAVITY * pow(duration().count(), 2));
-
-        return pos;
+        currentPosition.x = round(initialPos.x + velocity.x * duration().count());
+        currentPosition.y = round(initialPos.y + velocity.y * duration().count() + 0.5 * GRAVITY * pow(duration().count(), 2));
     }
 };
 

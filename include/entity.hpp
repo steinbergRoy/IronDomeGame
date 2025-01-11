@@ -23,10 +23,11 @@ public:
     virtual bool canIntersectWith(std::shared_ptr<Entity> & other) const = 0;
     bool isIntersectWith(std::shared_ptr<Entity> & other);
     virtual void drawOnGrid(Grid &grid) const = 0;
+    virtual void updatePosition() = 0;
 
 protected:
 //    Trajectory trajectory;
-    virtual Pos pos() const = 0;
+    virtual const Pos & pos() const = 0;
     virtual const State & getState() const = 0;
 
 private:
@@ -39,12 +40,14 @@ private:
 class StaticEntity : public Entity{
 public:
   StaticEntity(const State  & _state) : state(_state) {}
+  virtual ~StaticEntity() = default;
 
 protected:
   const State & getState() const override { return state; }
-  Pos pos() const override { return state.initialPos; }
+  const Pos & pos() const override { return state.initialPos; }
+  void updatePosition() override {}
+
   State state;
-//  StaticEntity() = default;
 
 private:
 
@@ -54,12 +57,16 @@ private:
 class DynamicEntity : public Entity{
 public:
   DynamicEntity(const DynamicState  & _state) : state(_state) {}
+  virtual ~DynamicEntity() = default;
+
+  static Velocity generateVelocity(EntityType type); // Generate velocity vector by type
 
 protected:
-  Pos pos() const override { return state.calculatePosition(); }
+  DynamicEntity() = default;
+  const Pos & pos() const override;
+  void updatePosition() override;
   const State & getState() const override { return state; }
   DynamicState state;
-  DynamicEntity() = default;
 
 private:
 

@@ -28,6 +28,7 @@ void Grid::draw()
 
 void Grid::refresh() 
 {
+
     // Draw background
     forEveryPixel(
         [this](int row, int col)
@@ -49,6 +50,7 @@ void Grid::refresh()
 
     for (auto entity : m_entities)
     {
+        entity->updatePosition();
         entity->drawOnGrid(*this);
     }
 }

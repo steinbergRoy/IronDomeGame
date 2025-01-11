@@ -1,21 +1,10 @@
 #include "entity.hpp"
+#include "globals.hpp"
+#include "assert.h"
 
 namespace iron_dome_game
 {
 
-//Pos Entity::pos() const
-//{
-//    if (isStatic())
-//    {
-//        return trajectory.initialState.pos;
-//    }
-//    else
-//    {
-//        return trajectory.calculatePosition();
-//    }
-//}
-
-//============================================================================//
 
 BoundingBox Entity::boundingBox() const
 {
@@ -27,6 +16,7 @@ BoundingBox Entity::boundingBox() const
     return bbox;
 }
 
+//============================================================================//
 
 bool Entity::isIntersectWith(std::shared_ptr<Entity> & other) {
     bool diverge_at_x  =        boundingBox().top_right.x < other->boundingBox().bottom_left.x;
@@ -41,6 +31,44 @@ bool Entity::isIntersectWith(std::shared_ptr<Entity> & other) {
 
 
     return intersection_result;
+}
+
+//============================================================================//
+
+void DynamicEntity::updatePosition() {
+     state.updatePosition();
+}
+
+//============================================================================//
+
+
+const Pos & DynamicEntity::pos() const {
+  return state.currentPosition;
+}
+
+//============================================================================//
+
+Velocity DynamicEntity::generateVelocity(EntityType type) {
+  int firePower = GameGlobals::DEFAULT_FIRE_POWER;
+
+  switch(type) {
+    case EntityType::PLATE: {
+      firePower = std::rand() % 15 + 30;
+      return Velocity(PlateGlobals::LAUNCH_ANGLE_COS * firePower, PlateGlobals::LAUNCH_ANGLE_SIN * firePower);
+      break;
+    }
+    case EntityType::ROCKET: {
+      firePower = RocketGlobals::FIRE_POWER;
+      return Velocity(RocketGlobals::LAUNCH_ANGLE_COS * firePower, RocketGlobals::LAUNCH_ANGLE_SIN * firePower);
+      break;
+
+    }
+    case EntityType::NONE:
+    case EntityType::PITCHER:
+    case EntityType::CANNON:
+    default: { assert(false); }
+  }
+  return Velocity();
 }
 
 
